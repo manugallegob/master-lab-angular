@@ -1,0 +1,54 @@
+<div class="login-container">
+
+  <div class="data-login-container">
+    <span>User: master8@lemoncode.net</span>
+    <span>Pass: 12345678</span>
+  </div>
+
+  <form class="form-container" action="" (ngSubmit)="onSubmit($event)">
+    
+    <mat-form-field>
+      <mat-label>Enter your email</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        [formControl]="email"
+        required
+      />
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage(email) }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        [formControl]="password"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="password.invalid">{{
+        getErrorMessage(password)
+      }}</mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="accent"
+      [disabled]="password.invalid || email.invalid"
+      (click)="loginIfValid(email.value, password.value)"
+    >
+      Enviar
+    </button>
+
+  </form>
+  
+</div>

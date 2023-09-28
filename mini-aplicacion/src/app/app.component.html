@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="mat-toolbar-container">
+  <div class="mat-toolbar-logo">
+    <img src="../assets/img/angular-logo.png" alt="">
+  </div>
+  <span *ngIf="isLogged()">Hola: {{userName}} </span>
+  <div class="menu-container" >
+    <ng-container *ngIf="isLogged(); else privateMenu">
+      <app-private-menu></app-private-menu>
+      <button mat-raised-button color="accent" (click)="logout()">Logout</button>
+    </ng-container>
+    <ng-template #privateMenu>
+      <app-public-menu></app-public-menu>
+    </ng-template>
+
+
+  </div>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>

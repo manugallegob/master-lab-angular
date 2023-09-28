@@ -1,0 +1,23 @@
+
+.mat-toolbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-container{
+    display: flex;
+
+}
+
+.mat-toolbar-logo{
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 50px;
+    }
+
+}
+
+

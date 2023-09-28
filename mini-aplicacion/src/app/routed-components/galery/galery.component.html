@@ -1,0 +1,55 @@
+<section class="galery-container">
+  <div class="img-selected-container" *ngIf="imgSelected">
+    <img [src]="imgSelected.src" class="img-selected" [width]="width" />
+  </div>
+
+  <div class="container-buttom">
+    <button mat-icon-button (click)="prevImgButtom()" [disabled]="index === 0">
+      <mat-icon>skip_previous</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      (click)="nextImgButtom()"
+      [disabled]="index === galery.length - 1"
+    >
+      <mat-icon>skip_next</mat-icon>
+    </button>
+    <button mat-icon-button (click)="play()" *ngIf="!isPlay">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="stop()" *ngIf="isPlay">
+      <mat-icon>stop</mat-icon>
+    </button>
+    <button mat-icon-button (click)="zoomIn(20)">
+      <mat-icon>zoom_in</mat-icon>
+    </button>
+    <button mat-icon-button (click)="zoomOut(20)">
+      <mat-icon>zoom_out</mat-icon>
+    </button>
+  </div>
+
+  <div class="img-list-container">
+    <button
+      mat-icon-button
+      (click)="backSlice()"
+      [disabled]="firstIndexSlice === 0"
+    >
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <img
+      *ngFor="let img of galery | slice : firstIndexSlice : secondIndexSlice"
+      [src]="img.src"
+      alt=""
+      (click)="getImgSelected(img)"
+      class="img-item"
+      [ngClass]="{ selected: img === imgSelected }"
+    />
+    <button
+      mat-icon-button
+      (click)="nextSlice()"
+      [disabled]="secondIndexSlice > galery.length - 1"
+    >
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div>
+</section>
